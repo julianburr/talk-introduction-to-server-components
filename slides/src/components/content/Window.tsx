@@ -1,3 +1,5 @@
+"use client";
+
 import { keyframes, styled } from "@/utils/styling";
 
 import LoadingSvg from "@/assets/loading.svg";
@@ -66,7 +68,7 @@ const Loading = styled("div", {
   alignItems: "center",
   justifyContent: "center",
   animation: `${rotate} 2s ease-in-out infinite`,
-  transition: "all .4s",
+  transition: "scale .4s, opacity .4s",
   scale: 0.8,
   opacity: 0,
 
@@ -76,13 +78,9 @@ const Loading = styled("div", {
     color: "$white",
   },
 
-  variants: {
-    visible: {
-      true: {
-        scale: 1,
-        opacity: 1,
-      },
-    },
+  '&[data-visible="true"]': {
+    scale: 1,
+    opacity: 1,
   },
 });
 
@@ -106,7 +104,7 @@ function Window({ title, children, loading }: any) {
         </Buttons>
         {title && <Title>{title}</Title>}
 
-        <Loading visible={loading}>
+        <Loading data-visible={loading}>
           <LoadingSvg />
         </Loading>
       </Top>

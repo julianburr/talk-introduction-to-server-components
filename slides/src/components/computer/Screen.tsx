@@ -12,16 +12,13 @@ const Container = styled("div", {
   justifyContent: "center",
   padding: "3vh",
   textAlign: "center",
-  transition: "all .4s",
+  transition: "background .4s",
 
-  variants: {
-    loading: {
-      true: {
-        background: "black",
-        "& *": {
-          display: "none",
-        },
-      },
+  '&[data-loading="true"]': {
+    background: "black",
+
+    "& *": {
+      display: "none",
     },
   },
 });
@@ -48,5 +45,5 @@ export function Screen({ era, children }: any) {
     }
   }, [era, children]);
 
-  return <Container loading={loading}>{showChildren}</Container>;
+  return <Container data-loading={loading}>{showChildren}</Container>;
 }

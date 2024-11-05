@@ -6,16 +6,7 @@ import {
   Source_Code_Pro,
 } from "next/font/google";
 
-import { Desk } from "@/components/Desk";
-import { Books } from "@/components/Books";
-import { Plant } from "@/components/Plant";
-import { Computer } from "@/components/Computer";
-import { Title } from "@/components/Title";
-import { Coffee } from "@/components/Coffee";
-import { ClientKeyboardController } from "@/components/utils/ClientKeyboardController";
-import { getCssText, globalCss, styled } from "@/utils/styling";
-import { contents } from "@/utils/contents";
-import { Meme } from "@/components/Meme";
+import { getCssText, globalCss } from "@/utils/styling";
 
 const bebas = Bebas_Neue({
   weight: "400",
@@ -65,18 +56,12 @@ const globalStyles = globalCss({
   },
 });
 
-const Container = styled("div", {
-  position: "fixed",
-  inset: 0,
-  background: "$wall",
-});
-
 export const metadata: Metadata = {
   title:
     "An Introduction to Server Components & the Future of Web DevelopmentAn Introduction to Server Components and the Future of Web Rendering - Talk by Julian Burr @ DDD Perth '24",
 };
 
-export default function RootLayout() {
+export default async function RootLayout({ children }: any) {
   globalStyles();
   return (
     <html lang="en">
@@ -86,21 +71,7 @@ export default function RootLayout() {
           dangerouslySetInnerHTML={{ __html: getCssText() }}
         />
       </head>
-      <body>
-        <Container>
-          <Desk />
-          <Books contents={contents} />
-          <Plant contents={contents} />
-
-          <Computer contents={contents} />
-          <Title />
-          <Meme />
-
-          <Coffee contents={contents} />
-        </Container>
-
-        <ClientKeyboardController max={contents.length - 1} />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

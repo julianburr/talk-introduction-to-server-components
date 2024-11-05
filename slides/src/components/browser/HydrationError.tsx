@@ -1,3 +1,5 @@
+"use client";
+
 import { styled } from "@/utils/styling";
 import Icon from "feather-icons-react";
 

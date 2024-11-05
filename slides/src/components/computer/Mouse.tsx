@@ -11,27 +11,26 @@ const Container = styled("div", {
   background: "$computerOld",
   borderRadius: "3vh 3vh 0 0",
 
-  variants: {
-    era: {
-      html: {
-        bottom: "1vh",
-      },
-      ajax: {
-        bottom: "1vh",
-        left: "calc(50% + 42vh)",
-      },
-      spa: {
-        left: "calc(50% + 42vh)",
-        bottom: "2vh",
-        height: "4vh",
-        background: "$computerNormal",
-      },
-      ssr: {
-        bottom: "2vh",
-        height: "3vh",
-        background: "$computerModern",
-      },
-    },
+  '&[data-era="html"]': {
+    bottom: "1vh",
+  },
+
+  '&[data-era="ajax"]': {
+    bottom: "1vh",
+    left: "calc(50% + 42vh)",
+  },
+
+  '&[data-era="spa"]': {
+    left: "calc(50% + 42vh)",
+    bottom: "2vh",
+    height: "4vh",
+    background: "$computerNormal",
+  },
+
+  '&[data-era="ssr"]': {
+    bottom: "2vh",
+    height: "3vh",
+    background: "$computerModern",
   },
 });
 
@@ -60,19 +59,15 @@ const Thumbs = styled("div", {
     },
   },
 
-  variants: {
-    era: {
-      ssr: {
-        gap: "0vh",
-      },
-    },
+  '[data-era="ssr"] &': {
+    gap: "0vh",
   },
 });
 
 export function Mouse({ era }: any) {
   return (
-    <Container era={era}>
-      <Thumbs era={era}>
+    <Container data-era={era}>
+      <Thumbs>
         <div />
         <div />
       </Thumbs>

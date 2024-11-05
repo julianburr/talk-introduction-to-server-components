@@ -1,4 +1,4 @@
-import Image from "next/image";
+"use client";
 
 import { styled } from "@/utils/styling";
 
@@ -36,14 +36,17 @@ const SubTitle = styled("h2", {
   opacity: 0.5,
 });
 
+const QrCodeImg = styled("img", {
+  width: "32vh",
+  height: "32vh",
+});
+
 function Fin() {
+  console.log({ qrCode });
+
   return (
     <Container>
-      <Image
-        alt="QR code"
-        {...qrCode}
-        style={{ width: "32vh", height: "32vh" }}
-      />
+      <QrCodeImg src={qrCode.src} />
 
       <Title>
         github.com/julianburr/

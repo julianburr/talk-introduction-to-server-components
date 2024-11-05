@@ -1,3 +1,5 @@
+"use client";
+
 import { styled } from "@/utils/styling";
 
 const Container = styled("div", {

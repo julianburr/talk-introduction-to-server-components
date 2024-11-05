@@ -1,7 +1,5 @@
-"use client";
-
 import { styled } from "@/utils/styling";
-import { useSlide } from "@/utils/useSlide";
+import { useServerSlide } from "@/utils/useServerSlide";
 
 const Heading = styled("h1", {
   transition: "opacity .4s",
@@ -19,12 +17,8 @@ const Heading = styled("h1", {
   letterSpacing: ".3rem",
   opacity: 0,
 
-  variants: {
-    visible: {
-      true: {
-        opacity: 1,
-      },
-    },
+  '&[data-visible="true"]': {
+    opacity: 1,
   },
 });
 
@@ -43,12 +37,8 @@ const Subtitle = styled("span", {
   lineHeight: 1,
   opacity: 0,
 
-  variants: {
-    visible: {
-      true: {
-        opacity: 1,
-      },
-    },
+  '&[data-visible="true"]': {
+    opacity: 1,
   },
 });
 
@@ -66,24 +56,26 @@ const Meta = styled("span", {
   lineHeight: 1.1,
   opacity: 0,
 
-  variants: {
-    visible: {
-      true: {
-        opacity: 0.2,
-      },
-    },
+  '&[data-visible="true"]': {
+    opacity: 0.2,
   },
 });
 
-export function Title() {
-  const { slide } = useSlide();
+type Props = {
+  slide?: string;
+};
+
+export function Title({ slide }: Props) {
+  const s = useServerSlide(slide);
   return (
     <>
-      <Heading visible={slide === 0}>
+      <Heading data-visible={s.slide === 0}>
         An Introduction to Server Components
       </Heading>
-      <Subtitle visible={slide === 0}>and the Future of Web Rendering</Subtitle>
-      <Meta visible={slide === 0}>
+      <Subtitle data-visible={s.slide === 0}>
+        and the Future of Web Rendering
+      </Subtitle>
+      <Meta data-visible={s.slide === 0}>
         Julian Burr
         <br />@ DDD Perth &apos;24
       </Meta>

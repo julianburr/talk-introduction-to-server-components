@@ -1,19 +1,20 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
 
 function ClientKeyboardController({ max }: any) {
   const router = useRouter();
-  const params = useParams();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const s = params["slide"] as string;
+  const s = searchParams.get("slide") as string;
   const slide = s ? parseInt(s) : 0;
   const setSlide = useCallback(
     (val: number) => {
-      router.push(`/slide/${val}`);
+      router.push(`${pathname}?slide=${val}`);
     },
-    [router]
+    [router, pathname]
   );
 
   useEffect(() => {

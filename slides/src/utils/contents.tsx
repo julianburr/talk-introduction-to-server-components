@@ -1,48 +1,20 @@
-import { ReactNode } from "react";
-
 import { Window } from "@/components/content/Window";
 import { Title } from "@/components/content/Title";
-import { Code } from "@/components/content/Code";
-import { ListView } from "@/components/notflix/ListView";
-import { DetailsView } from "@/components/notflix/DetailsView";
-import { NetworkPanel } from "@/components/devtools/NetworkPanel";
-import { SourcesPanel } from "@/components/devtools/SourcesPanel";
 import { Fin } from "@/components/content/Fin";
-import { Title as MainTitle } from "@/components/Title";
-
-import SsrDetails from "@/snippets/ssr/Details.txt";
-import SsrLikeButton from "@/snippets/ssr/LikeButton.txt";
-import RscDetails from "@/snippets/rsc/Details.txt";
-import RscLikeButton from "@/snippets/rsc/LikeButton.txt";
-import RscLikeButtonBefore from "@/snippets/rsc/LikeButtonBefore.txt";
-import QwikDetails from "@/snippets/qwik/Details.txt";
-import QwikLikeButton from "@/snippets/qwik/LikeButton.txt";
-import AstroDetails from "@/snippets/astro/Details.txt";
-import { rscNodeModules } from "@/devtools/sources/rscNodeModules";
-import { craNodeModules } from "@/devtools/sources/craNodeModules";
 import { BrowserContent } from "@/components/browser/Content";
-import { rscNetwork } from "@/devtools/network/rscNetwork";
-import { craNetwork } from "@/devtools/network/craNetwork";
-import { SkeletonView } from "@/components/notflix/SkeletonView";
 import { HydrationError } from "@/components/browser/HydrationError";
-import { Meme } from "@/components/Meme";
 
 type Era = "title" | "html" | "ajax" | "spa" | "ssr" | "rsc";
 
-type Content = {
-  era?: Era;
-  content?: ReactNode;
-};
-
-export const contents: Content[] = [
+export const contents = [
   // Title page
-  {},
+  { era: "title" },
 
   // Meme
-  {},
-  {},
-  {},
-  {},
+  { era: "title" },
+  { era: "title" },
+  { era: "title" },
+  { era: "title" },
 
   // Plain HTML
   {
@@ -164,6 +136,6 @@ export const contents: Content[] = [
     era: "rsc",
     content: <Fin />,
   },
-];
+] as const;
 
 export type { Era };

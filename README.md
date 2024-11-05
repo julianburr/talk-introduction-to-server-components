@@ -7,7 +7,7 @@ Slides and demo code for my conference talk about hydration and React Server Com
 yarn
 
 # Run slides app
-yarn slides:dev
+yarn dev:slides
 
 # Run demo apps
 yarn dev

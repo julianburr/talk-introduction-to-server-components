@@ -1,9 +1,11 @@
-import { useParams } from "next/navigation";
+"use client";
+
+import { useParams, useSearchParams } from "next/navigation";
 
 function useSlide(contents?: any) {
-  const params = useParams();
+  const searchParams = useSearchParams();
 
-  const s = params.slide as string;
+  const s = searchParams.get("slide") as string;
   const slide = s ? parseInt(s) : 0;
 
   const c = contents?.[slide] || {};

@@ -1,10 +1,8 @@
-"use client";
-
 import { styled } from "@/utils/styling";
+import { useServerSlide } from "@/utils/useServerSlide";
 
 import windPoweredShips from "@/assets/meme-wind-powered-ships.jpeg";
 import itIsEvolving from "@/assets/meme-it-is-evolving-just-backwards.jpeg";
-import { useSlide } from "@/utils/useSlide";
 
 const Container = styled("div", {
   transition: "all .4s",
@@ -14,27 +12,22 @@ const Container = styled("div", {
   boxShadow: "0 0 2vh rgba(0, 0, 0, .05)",
   width: "60vw",
   left: "20vw",
+  bottom: "10vh",
+  opacity: 1,
 
   "& img": {
     width: "100%",
     height: "auto",
   },
 
-  variants: {
-    position: {
-      bottom: {
-        bottom: "-120vh",
-        opacity: 0,
-      },
-      top: {
-        bottom: "120vh",
-        opacity: 0,
-      },
-      visible: {
-        bottom: "10vh",
-        opacity: 1,
-      },
-    },
+  '&[data-position="bottom"]': {
+    bottom: "-120vh",
+    opacity: 0,
+  },
+
+  '&[data-position="top"]': {
+    bottom: "120vh",
+    opacity: 0,
   },
 });
 
@@ -84,33 +77,36 @@ const Comment = styled("div", {
     height: "auto",
   },
 
-  variants: {
-    position: {
-      bottom: {},
-      top: {
-        bottom: "110vh",
-        scale: 1,
-        opacity: 0,
-      },
-      visible: {
-        scale: 1,
-        opacity: 1,
-      },
-    },
+  '&[data-position="top"]': {
+    bottom: "110vh",
+    scale: 1,
+    opacity: 0,
+  },
+
+  '&[data-position="visible"]': {
+    scale: 1,
+    opacity: 1,
   },
 });
 
-export function Meme() {
-  const { slide } = useSlide();
+const MemeImg = styled("img", {});
+
+type Props = {
+  slide?: string;
+};
+
+export function Meme({ slide }: Props) {
+  const s = useServerSlide(slide);
+  console.log({ check: s.slide });
 
   return (
     <>
       <Container
-        position={slide < 1 ? "bottom" : slide > 4 ? "top" : "visible"}
+        data-position={s.slide < 1 ? "bottom" : s.slide > 4 ? "top" : undefined}
       >
         <User>@dailytechnologynews</User>
 
-        <img alt="Wind powered ships meme" src={windPoweredShips.src} />
+        <MemeImg alt="Wind powered ships meme" src={windPoweredShips.src} />
 
         <Content>
           This wind powered cargo ship is set to change the way we ship the
@@ -123,7 +119,7 @@ export function Meme() {
       </Container>
 
       <Comment
-        position={slide < 2 ? "bottom" : slide > 4 ? "top" : "visible"}
+        data-position={s.slide < 2 ? "bottom" : s.slide > 4 ? "top" : "visible"}
         css={{
           $$commentBottom: "62vh",
           $$commentLeft: "20vw",
@@ -135,7 +131,7 @@ export function Meme() {
       </Comment>
 
       <Comment
-        position={slide < 3 ? "bottom" : slide > 4 ? "top" : "visible"}
+        data-position={s.slide < 3 ? "bottom" : s.slide > 4 ? "top" : "visible"}
         css={{
           $$commentBottom: "54vh",
           $$commentLeft: "18vw",
@@ -147,14 +143,14 @@ export function Meme() {
       </Comment>
 
       <Comment
-        position={slide < 4 ? "bottom" : slide > 4 ? "top" : "visible"}
+        data-position={s.slide < 4 ? "bottom" : s.slide > 4 ? "top" : "visible"}
         css={{
           width: "38vw",
           $$commentBottom: "40vh",
           $$commentLeft: "18vw",
         }}
       >
-        <img alt="It is evolving, just backwards" src={itIsEvolving.src} />
+        <MemeImg alt="It is evolving, just backwards" src={itIsEvolving.src} />
       </Comment>
     </>
   );

@@ -1,10 +1,5 @@
-"use client";
-
-import classNames from "classnames";
-
 import { styled } from "@/utils/styling";
-import { useParams } from "next/navigation";
-import { useSlide } from "@/utils/useSlide";
+import { useServerSlide } from "@/utils/useServerSlide";
 
 const Book = styled("div", {
   position: "absolute",
@@ -32,12 +27,8 @@ const Book = styled("div", {
     opacity: 0.2,
   },
 
-  variants: {
-    visible: {
-      true: {
-        bottom: "13.5vh",
-      },
-    },
+  '&[data-visible="true"]': {
+    bottom: "13.5vh",
   },
 });
 
@@ -62,15 +53,12 @@ const BookLeft = styled(Book, {
     opacity: 0.05,
   },
 
-  variants: {
-    left: {
-      partial: {
-        left: "calc(50% - 94.6vh)",
-      },
-      full: {
-        left: "-50%",
-      },
-    },
+  '&[data-left="partial"]': {
+    left: "calc(50% - 94.6vh)",
+  },
+
+  '&[data-left="full"]': {
+    left: "-50%",
   },
 });
 
@@ -98,17 +86,14 @@ const BookMiddle = styled(Book, {
     top: "59%",
   },
 
-  variants: {
-    left: {
-      partial: {
-        left: "calc(50% - 83vh)",
-        width: "8vh",
-      },
-      full: {
-        left: "-50%",
-        width: "8vh",
-      },
-    },
+  '&[data-left="partial"]': {
+    left: "calc(50% - 83vh)",
+    width: "8vh",
+  },
+
+  '&[data-left="full"]': {
+    left: "-50%",
+    width: "8vh",
   },
 });
 
@@ -136,17 +121,14 @@ const BookRight = styled(Book, {
     top: "4vh",
   },
 
-  variants: {
-    left: {
-      partial: {
-        left: "calc(50% - 75.1vh)",
-        width: "10vh",
-      },
-      full: {
-        left: "-50%",
-        width: "10vh",
-      },
-    },
+  '&[data-left="partial"]': {
+    left: "calc(50% - 75.1vh)",
+    width: "10vh",
+  },
+
+  '&[data-left="full"]': {
+    left: "-50%",
+    width: "10vh",
   },
 });
 
@@ -165,10 +147,14 @@ const titles = {
   },
 };
 
-function Books({ contents }: any) {
-  const { era } = useSlide(contents);
+type Props = {
+  slide?: string;
+};
 
-  const visible = !!era && !["title"].includes(era);
+function Books({ slide }: Props) {
+  const { era } = useServerSlide(slide);
+
+  const visible = !["title"].includes(era);
   const left = ["ssr", "rsc"].includes(era)
     ? "full"
     : ["ajax", "spa"].includes(era)
@@ -180,11 +166,11 @@ function Books({ contents }: any) {
 
   return (
     <>
-      <BookLeft visible={visible} left={left} />
-      <BookMiddle visible={visible} left={left}>
+      <BookLeft data-visible={visible} data-left={left} />
+      <BookMiddle data-visible={visible} data-left={left}>
         <span>{titleMiddle}</span>
       </BookMiddle>
-      <BookRight visible={visible} left={left}>
+      <BookRight data-visible={visible} data-left={left}>
         <span>{titleRight}</span>
       </BookRight>
     </>

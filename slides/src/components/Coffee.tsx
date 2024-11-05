@@ -1,7 +1,5 @@
-"use client";
-
 import { styled } from "@/utils/styling";
-import { useSlide } from "@/utils/useSlide";
+import { useServerSlide } from "@/utils/useServerSlide";
 
 import CoffeeMugSvg from "@/assets/coffee-mug.svg";
 import CoffeeCupSvg from "@/assets/coffee-cup.svg";
@@ -14,17 +12,12 @@ const CoffeeMug = styled(CoffeeMugSvg, {
   width: "24vh",
   height: "auto",
 
-  variants: {
-    visible: {
-      true: {
-        bottom: "1vh",
-      },
-    },
-    left: {
-      true: {
-        left: "-40vh",
-      },
-    },
+  '&[data-visible="true"]': {
+    bottom: "1vh",
+  },
+
+  '&[data-left="true"]': {
+    left: "-40vh",
   },
 });
 
@@ -36,39 +29,39 @@ const CoffeeCup = styled(CoffeeCupSvg, {
   width: "30vh",
   height: "auto",
 
-  variants: {
-    visible: {
-      true: {
-        bottom: "2.5vh",
-      },
-    },
-    left: {
-      partial: {
-        left: "calc(50% - 68vh)",
-      },
-      full: {
-        left: "-40vh",
-      },
-    },
+  '&[data-visible="true"]': {
+    bottom: "2.5vh",
+  },
+
+  '&[data-left="partial"]': {
+    left: "calc(50% - 68vh)",
+  },
+
+  '&[data-left="full"]': {
+    left: "-40vh",
   },
 });
 
-export function Coffee({ contents }: any) {
-  const { era, slide } = useSlide(contents);
+type Props = {
+  slide?: string;
+};
 
-  const visible = !!era && !["title"].includes(era);
-  const mugLeft = !(["html", "ajax"].includes(era) || slide === 0);
+export function Coffee({ slide }: Props) {
+  const s = useServerSlide(slide);
 
-  const cupLeft = ["rsc"].includes(era)
+  const visible = !["title"].includes(s.era);
+  const mugLeft = !(["html", "ajax"].includes(s.era) || s.slide === 0);
+
+  const cupLeft = ["rsc"].includes(s.era)
     ? "full"
-    : ["ssr"].includes(era)
+    : ["ssr"].includes(s.era)
     ? "partial"
     : undefined;
 
   return (
     <>
-      <CoffeeMug visible={visible} left={mugLeft} />
-      <CoffeeCup visible={visible && mugLeft} left={cupLeft} />
+      <CoffeeMug data-visible={visible} data-left={mugLeft} />
+      <CoffeeCup data-visible={visible && mugLeft} data-left={cupLeft} />
     </>
   );
 }

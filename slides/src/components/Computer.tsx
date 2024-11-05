@@ -1,23 +1,25 @@
-"use client";
-
 import { Monitor } from "@/components/computer/Monitor";
 import { Screen } from "@/components/computer/Screen";
 import { Tower } from "@/components/computer/Tower";
 import { Keyboard } from "@/components/computer/Keyboard";
 import { Mouse } from "@/components/computer/Mouse";
-import { useSlide } from "@/utils/useSlide";
+import { useServerSlide } from "@/utils/useServerSlide";
 
-export function Computer({ contents }: any) {
-  const { era, content } = useSlide(contents);
+type Props = {
+  slide?: string;
+};
+
+export function Computer({ slide }: Props) {
+  const s = useServerSlide(slide);
   return (
     <>
-      <Monitor era={era}>
-        <Screen era={era}>{content}</Screen>
+      <Monitor era={s.era}>
+        <Screen era={s.era}>{"content" in s && s.content}</Screen>
       </Monitor>
 
-      <Tower era={era} />
-      <Keyboard era={era} />
-      <Mouse era={era} />
+      <Tower era={s.era} />
+      <Keyboard era={s.era} />
+      <Mouse era={s.era} />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { Era } from "@/utils/contents";
 import { styled } from "@/utils/styling";
 
 const Container = styled("div", {
@@ -10,42 +11,46 @@ const Container = styled("div", {
   background: "$computerOld",
   borderRadius: "3vh",
 
-  variants: {
-    era: {
-      html: {
-        bottom: "10vh",
-      },
-      ajax: {
-        left: "calc(50% - 60vh)",
-        bottom: "10vh",
-        width: "35vh",
-        height: "85vh",
-      },
-      spa: {
-        left: "calc(50% - 60vh)",
-        bottom: "10vh",
-        width: "35vh",
-        height: "85vh",
-        background: "$computerNormal",
-      },
-      ssr: {
-        bottom: "10vh",
-        width: "35vh",
-        height: "85vh",
-        background: "$computerNormal",
-        left: "-40vh",
-      },
-      rsc: {
-        bottom: "10vh",
-        width: "35vh",
-        height: "85vh",
-        background: "$computerNormal",
-        left: "-40vh",
-      },
-    },
+  '&[data-era="html"]': {
+    bottom: "10vh",
+  },
+
+  '&[data-era="ajax"]': {
+    left: "calc(50% - 60vh)",
+    bottom: "10vh",
+    width: "35vh",
+    height: "85vh",
+  },
+
+  '&[data-era="spa"]': {
+    left: "calc(50% - 60vh)",
+    bottom: "10vh",
+    width: "35vh",
+    height: "85vh",
+    background: "$computerNormal",
+  },
+
+  '&[data-era="ssr"]': {
+    bottom: "10vh",
+    width: "35vh",
+    height: "85vh",
+    background: "$computerNormal",
+    left: "-40vh",
+  },
+
+  '&[data-era="rsc"]': {
+    bottom: "10vh",
+    width: "35vh",
+    height: "85vh",
+    background: "$computerNormal",
+    left: "-40vh",
   },
 });
 
-export function Tower({ era }: any) {
-  return <Container era={era} />;
+type Props = {
+  era: Era;
+};
+
+export function Tower({ era }: Props) {
+  return <Container data-era={era} />;
 }

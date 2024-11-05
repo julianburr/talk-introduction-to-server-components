@@ -1,5 +1,3 @@
-import classnames from "classnames";
-
 import { styled } from "@/utils/styling";
 
 const Container = styled("div", {
@@ -13,29 +11,28 @@ const Container = styled("div", {
   background: "$computerOld",
   borderRadius: "2vh 2vh 0 0",
 
-  variants: {
-    era: {
-      html: {
-        bottom: "1vh",
-      },
-      ajax: {
-        bottom: "1vh",
-        left: "calc(50% - 22vh)",
-      },
-      spa: {
-        left: "calc(50% - 22vh)",
-        bottom: "2vh",
-        height: "3vh",
-        borderRadius: "1.5vh 1.5vh 0 0",
-        background: "$computerNormal",
-      },
-      ssr: {
-        bottom: "2vh",
-        height: "2vh",
-        borderRadius: "1vh 1vh 0 0",
-        background: "$computerModern",
-      },
-    },
+  '&[data-era="html"]': {
+    bottom: "1vh",
+  },
+
+  '&[data-era="ajax"]': {
+    bottom: "1vh",
+    left: "calc(50% - 22vh)",
+  },
+
+  '&[data-era="spa"]': {
+    left: "calc(50% - 22vh)",
+    bottom: "2vh",
+    height: "3vh",
+    borderRadius: "1.5vh 1.5vh 0 0",
+    background: "$computerNormal",
+  },
+
+  '&[data-era="ssr"]': {
+    bottom: "2vh",
+    height: "2vh",
+    borderRadius: "1vh 1vh 0 0",
+    background: "$computerModern",
   },
 });
 
@@ -57,24 +54,21 @@ const Keys = styled("div", {
     borderRadius: "0.3vh 0.3vh 0 0",
   },
 
-  variants: {
-    era: {
-      spa: {
-        top: "-0.8vh",
-        height: "0.8vh",
-      },
-      ssr: {
-        top: "-0.8vh",
-        height: "0.8vh",
-      },
-    },
+  '[data-era="spa"] &': {
+    top: "-0.8vh",
+    height: "0.8vh",
+  },
+
+  '[data-era="ssr"] &': {
+    top: "-0.8vh",
+    height: "0.8vh",
   },
 });
 
 export function Keyboard({ era }: any) {
   return (
-    <Container era={era}>
-      <Keys era={era}>
+    <Container data-era={era}>
+      <Keys>
         <div />
         <div />
         <div />

@@ -1,7 +1,5 @@
-"use client";
-
 import { styled } from "@/utils/styling";
-import { useSlide } from "@/utils/useSlide";
+import { useServerSlide } from "@/utils/useServerSlide";
 
 import PlantSvg from "@/assets/plant.svg";
 
@@ -18,62 +16,62 @@ const PlantIllustation = styled(PlantSvg, {
     transformOrigin: "bottom center",
   },
 
-  variants: {
-    size: {
-      small: {
-        left: "calc(50% + 40vh)",
+  '&[data-size="small"]': {
+    left: "calc(50% + 40vh)",
 
-        "& #leave3": {
-          scale: 0.55,
-        },
-
-        "& #leave1, & #leave2": {
-          scale: 0.5,
-        },
-
-        "& #leave4, & #leave5": {
-          scale: 0.4,
-        },
-      },
-      medium: {
-        left: "calc(50% + 63vh)",
-
-        "& #leave3": {
-          scale: 0.7,
-        },
-
-        "& #leave1, & #leave2": {
-          scale: 0.65,
-        },
-
-        "& #leave4, & #leave5": {
-          scale: 0.55,
-        },
-      },
-      large: {
-        left: "calc(50% + 63vh)",
-      },
+    "& #leave3": {
+      scale: 0.55,
     },
 
-    right: {
-      true: {
-        left: "105%",
-      },
+    "& #leave1, & #leave2": {
+      scale: 0.5,
     },
+
+    "& #leave4, & #leave5": {
+      scale: 0.4,
+    },
+  },
+
+  '&[data-size="medium"]': {
+    left: "calc(50% + 63vh)",
+
+    "& #leave3": {
+      scale: 0.7,
+    },
+
+    "& #leave1, & #leave2": {
+      scale: 0.65,
+    },
+
+    "& #leave4, & #leave5": {
+      scale: 0.55,
+    },
+  },
+
+  '&[data-size="large"]': {
+    left: "calc(50% + 63vh)",
+  },
+
+  '&[data-right="true"]': {
+    left: "105%",
   },
 });
 
-function Plant({ contents }: any) {
-  const { era } = useSlide(contents);
+type Props = {
+  slide?: string;
+};
 
-  const right = !era || ["rsc"].includes(era);
+function Plant({ slide }: Props) {
+  const { era } = useServerSlide(slide);
+
+  const right = ["intro", "rsc"].includes(era);
   const size = ["rsc", "ssr"].includes(era)
     ? "large"
     : ["spa", "ajax"].includes(era)
     ? "medium"
     : "small";
 
-  return <PlantIllustation right={right} size={size} />;
+  return <PlantIllustation data-right={right} data-size={size} />;
 }
 
 export { Plant };
