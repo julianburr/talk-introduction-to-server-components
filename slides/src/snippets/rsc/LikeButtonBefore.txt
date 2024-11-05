@@ -1,0 +1,18 @@
+
+
+import storage from "localstorage-slim";
+
+function LikeButton({ id }) {
+  const defaultActive = storage?.get(id) === "true";
+  const [active, setActive] = useState(defaultActive);
+
+  useEffect(() => storage?.set(id, active ? "true" : "false"), [active]);
+
+  return (
+    <HeartButton 
+      active={active} 
+      onClick={() => setActive((state) => !state)} 
+    />
+  );
+}
+

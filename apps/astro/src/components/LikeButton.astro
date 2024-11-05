@@ -1,0 +1,45 @@
+---
+import "@workspace/shared/styles/like-button.css";
+
+import HeartSvg from "./HeartSvg.astro";
+
+type Props = {
+  movieId?: string;
+};
+
+const movieId = Astro.props.movieId;
+const checkboxId = `checkbox-${movieId}`;
+const storageKey = `notflix/like/${movieId}`;
+---
+
+<button
+  class="like-button bg-white/70 hover:bg-white focus:bg-white transition-all text-black w-10 h-10 flex items-center justify-center rounded-full shadow-gray-100 shadow-[0_0_40px_0]"
+>
+  <input
+    type="checkbox"
+    class="checkbox"
+    id={checkboxId}
+    data-storageKey={storageKey}
+  />
+  <label for={checkboxId}>
+    <HeartSvg />
+  </label>
+</button>
+
+<script>
+  import storage from "localstorage-slim";
+
+  const $checkboxes =
+    window.document.querySelectorAll<HTMLInputElement>("input.checkbox");
+
+  $checkboxes.forEach(($checkbox) => {
+    const storageKey = $checkbox.getAttribute("data-storagekey") || "";
+    const initialChecked = storage?.get(storageKey) === "true";
+
+    $checkbox.checked = initialChecked;
+    $checkbox.addEventListener("change", (e: any) => {
+      const val = e.target?.checked ? "true" : "false";
+      storage?.set(storageKey, val);
+    });
+  });
+</script>

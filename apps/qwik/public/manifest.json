@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "qwik-project-name",
+  "short_name": "Qwik | Notflix",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff"
+}

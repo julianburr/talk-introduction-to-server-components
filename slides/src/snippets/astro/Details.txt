@@ -1,0 +1,19 @@
+---
+import markdown from "markdown-it";
+import moment from "moment";
+
+const id = Astro.params.movieId;
+const movie = await fetchMovie(id);
+
+const year = moment(data.short.datePublished).format("YYYY");
+const description = markdown().render(data.short.plot);
+---
+
+<Main>
+  <Poster title={movie?.short?.name} year={year} />
+  <Content description={description} />
+</Main>
+
+<script>
+  // ...
+</script>

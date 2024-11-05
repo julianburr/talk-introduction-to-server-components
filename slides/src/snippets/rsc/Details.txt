@@ -1,0 +1,16 @@
+import markdown from "markdown-it";
+import moment from "moment";
+
+async function DetailsPage({ id }) {
+  const data = await fetchData({ id });
+
+  const year = moment(data.short.datePublished).format("YYYY");
+  const description = markdown().render(data.short.plot);
+
+  return (
+    <Main>
+      <Poster title={data?.short?.name} year={year} />
+      <Content description={description} />
+    </Main>
+  );
+}

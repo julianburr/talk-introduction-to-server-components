@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply h-full;
+}
+
+body,
+#root,
+#__next {
+  @apply flex flex-col min-h-full;
+}
+
+#root,
+#__next {
+  @apply flex-1;
+}
+
+body {
+  @apply bg-gray-100 text-white font-default leading-snug;
+}
+
+p {
+  @apply my-2;
+}

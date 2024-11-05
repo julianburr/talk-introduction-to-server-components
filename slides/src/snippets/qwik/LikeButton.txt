@@ -1,0 +1,12 @@
+import storage from "localstorage-slim";
+
+export default component$(({ id }) => {
+  return (
+    <HeartButton
+      defaultValue={storage.get(id)}
+      onClick$={(e) => {
+        storage.set(id, e.target.checked ? "true" : "false");
+      }}
+    />
+  );
+}

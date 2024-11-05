@@ -1,0 +1,43 @@
+{
+  "private": true,
+  "name": "talk-dont-stay-hydrated",
+  "version": "1.0.0",
+  "description": "Example code for meetup talk on hydration",
+  "workspaces": {
+    "nohoist": [
+      "**/@workspace/shared",
+      "**/@workspace/shared/**",
+      "**/prettier",
+      "**/prettier/**",
+      "**/prettier-plugin-astro",
+      "**/prettier-plugin-astro/**"
+    ],
+    "packages": [
+      "apps/**",
+      "shared",
+      "slides"
+    ]
+  },
+  "scripts": {
+    "dev:cra": "yarn --cwd=./apps/cra dev",
+    "dev:nextjs-pages": "yarn --cwd=./apps/nextjs-pages dev",
+    "dev:nextjs": "yarn --cwd=./apps/nextjs dev",
+    "dev:astro": "yarn --cwd=./apps/astro dev",
+    "dev:qwik": "yarn --cwd=./apps/qwik dev",
+    "dev:slides": "yarn --cwd=./slides dev",
+    "dev": "stmux -w always -e ERROR -m beep,system -- [ \"yarn dev:cra\" : [ \"yarn dev:nextjs-pages\" .. \"yarn dev:nextjs\" ] : [ \"yarn dev:astro\" .. \"yarn dev:qwik\" ] ]",
+    "start:cra": "yarn --cwd=./apps/cra build && clear && yarn --cwd=./apps/cra start",
+    "start:nextjs-pages": "yarn --cwd=./apps/nextjs-pages build && clear && yarn --cwd=./apps/nextjs-pages start",
+    "start:nextjs": "yarn --cwd=./apps/nextjs build && clear && yarn --cwd=./apps/nextjs start",
+    "start:astro": "yarn --cwd=./apps/astro dev",
+    "start:qwik": "yarn --cwd=./apps/qwik preview",
+    "start:slides": "yarn --cwd=./slides build && clear && yarn --cwd=./slides start",
+    "start": "stmux -w always -e ERROR -m beep,system -- [ \"yarn start:cra\" : [ \"yarn start:nextjs-pages\" .. \"yarn start:nextjs\" ] : [ \"yarn start:astro\" .. \"yarn start:qwik\" ] ]"
+  },
+  "keywords": [],
+  "author": "hello@julianburr.de",
+  "license": "MIT",
+  "devDependencies": {
+    "stmux": "^1.8.7"
+  }
+}

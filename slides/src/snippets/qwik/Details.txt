@@ -1,0 +1,18 @@
+export default component$(() => {
+  const loc = useLocation();
+
+  const data = useResource$(async ({ track }) => {
+    track(() => loc.params.movieId);
+
+    const data = await fetchMovie(loc.params.movieId as string);
+    return data;
+  });
+
+  return (
+    <Resource
+      value={data}
+      onPending={() => <Skeleton />}
+      onResolved={(movie) => <Main>{/* ... *}</Main>}
+    />
+  );
+}

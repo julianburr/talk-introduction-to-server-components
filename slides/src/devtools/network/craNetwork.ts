@@ -1,0 +1,21 @@
+export const craNetwork = [
+  {
+    type: "document",
+    label: "the-unbearable-weight-of-massive-talent",
+    size: 19200,
+  },
+  { type: "font", label: "Poppins.woff2", size: 8100 },
+  { type: "font", label: "Bungee.woff2", size: 13500 },
+  { type: "stylesheet", label: "global.css", size: 3900 },
+  { type: "script", label: "webpack.js", size: 1200 },
+  { type: "script", label: "framework.js", size: 45700 },
+  { type: "script", label: "main.js", size: 32100 },
+  { type: "script", label: "_app.js", size: 1300 },
+  { type: "script", label: "chunk-1.js", size: 19200 },
+  { type: "script", label: "chunk-2.js", size: 36100 },
+  { type: "script", label: "chunk-3.js", size: 44600 },
+  { type: "script", label: "page.js", size: 2700 },
+  { type: "script", label: "_buildManifest.js", size: 913 },
+  { type: "script", label: "_ssgManifest.js", size: 422 },
+  { type: "script", label: "index.js", size: 5100 },
+];

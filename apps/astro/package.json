@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "name": "astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --port=4030",
+    "start": "astro dev --port=4030",
+    "build": "astro check && astro build",
+    "preview": "astro preview --port=4030",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@workspace/shared": "0.0.0",
+    "astro-feather": "^1.0.0",
+    "localstorage-slim": "^2.7.1",
+    "markdown-it": "^14.1.0",
+    "moment": "^2.30.1",
+    "slugify": "^1.6.6",
+    "tailwindcss": "^3.4.14"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/node": "^8.3.4",
+    "@astrojs/tailwind": "^5.1.2",
+    "astro": "^4.16.8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.6.3"
+  }
+}
