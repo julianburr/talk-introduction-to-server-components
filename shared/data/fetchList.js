@@ -5,7 +5,7 @@ async function fetchList(searchTerm) {
     return [];
   }
 
-  await sleep();
+  await sleep(2000);
 
   const encoded = encodeURIComponent(searchTerm);
   const res = await fetch(`https://search.imdbot.workers.dev/?q=${encoded}`);

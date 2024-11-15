@@ -5,7 +5,7 @@ async function fetchMovie(movieId) {
     return null;
   }
 
-  await sleep();
+  await sleep(2000);
 
   const res = await fetch(`https://search.imdbot.workers.dev/?tt=${movieId}`);
   const data = await res.json();
