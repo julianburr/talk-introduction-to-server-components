@@ -24,6 +24,14 @@ function ClientKeyboardController({ max }: any) {
         setSlide(Math.max(slide - 1, 0));
       } else if (e.key === "ArrowRight" || e.key === " ") {
         setSlide(Math.min(slide + 1, max));
+      } else if (e.key === "b") {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+          document.body.classList.add("hide-cursor");
+        } else if (document.exitFullscreen) {
+          document.exitFullscreen();
+          document.body.classList.remove("hide-cursor");
+        }
       }
     };
 

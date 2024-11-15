@@ -39,6 +39,10 @@ const globalStyles = globalCss({
     ...bebas.style,
   },
 
+  "body.hide-cursor *": {
+    cursor: "none",
+  },
+
   "*, *:before, *:after": {
     boxSizing: "border-box",
   },
