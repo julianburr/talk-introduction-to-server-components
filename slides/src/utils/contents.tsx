@@ -4,11 +4,14 @@ import { Fin } from "@/components/content/Fin";
 import { BrowserContent } from "@/components/browser/Content";
 import { HydrationError } from "@/components/browser/HydrationError";
 
-type Era = "title" | "html" | "ajax" | "spa" | "ssr" | "rsc";
+type Era = "sponsors" | "title" | "html" | "ajax" | "spa" | "ssr" | "rsc";
 
 export const contents = [
   // Title page
   { era: "title" },
+
+  // Sponsors
+  { era: "sponsors" },
 
   // Meme
   { era: "title" },

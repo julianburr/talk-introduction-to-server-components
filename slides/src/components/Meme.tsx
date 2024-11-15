@@ -97,12 +97,10 @@ type Props = {
 
 export function Meme({ slide }: Props) {
   const s = useServerSlide(slide);
-  console.log({ check: s.slide });
-
   return (
     <>
       <Container
-        data-position={s.slide < 1 ? "bottom" : s.slide > 4 ? "top" : undefined}
+        data-position={s.slide < 2 ? "bottom" : s.slide > 5 ? "top" : undefined}
       >
         <User>@dailytechnologynews</User>
 
@@ -119,7 +117,7 @@ export function Meme({ slide }: Props) {
       </Container>
 
       <Comment
-        data-position={s.slide < 2 ? "bottom" : s.slide > 4 ? "top" : "visible"}
+        data-position={s.slide < 3 ? "bottom" : s.slide > 5 ? "top" : "visible"}
         css={{
           $$commentBottom: "62vh",
           $$commentLeft: "20vw",
@@ -131,7 +129,7 @@ export function Meme({ slide }: Props) {
       </Comment>
 
       <Comment
-        data-position={s.slide < 3 ? "bottom" : s.slide > 4 ? "top" : "visible"}
+        data-position={s.slide < 4 ? "bottom" : s.slide > 5 ? "top" : "visible"}
         css={{
           $$commentBottom: "54vh",
           $$commentLeft: "18vw",
@@ -143,7 +141,7 @@ export function Meme({ slide }: Props) {
       </Comment>
 
       <Comment
-        data-position={s.slide < 4 ? "bottom" : s.slide > 4 ? "top" : "visible"}
+        data-position={s.slide < 5 ? "bottom" : s.slide > 5 ? "top" : "visible"}
         css={{
           width: "38vw",
           $$commentBottom: "40vh",

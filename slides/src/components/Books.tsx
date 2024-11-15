@@ -154,7 +154,7 @@ type Props = {
 function Books({ slide }: Props) {
   const { era } = useServerSlide(slide);
 
-  const visible = !["title"].includes(era);
+  const visible = !["sponsors", "title"].includes(era);
   const left = ["ssr", "rsc"].includes(era)
     ? "full"
     : ["ajax", "spa"].includes(era)

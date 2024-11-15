@@ -49,7 +49,7 @@ type Props = {
 export function Coffee({ slide }: Props) {
   const s = useServerSlide(slide);
 
-  const visible = !["title"].includes(s.era);
+  const visible = !["sponsors", "title"].includes(s.era);
   const mugLeft = !(["html", "ajax"].includes(s.era) || s.slide === 0);
 
   const cupLeft = ["rsc"].includes(s.era)

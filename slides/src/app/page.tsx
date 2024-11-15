@@ -7,6 +7,7 @@ import { Coffee } from "@/components/Coffee";
 import { ClientKeyboardController } from "@/components/utils/ClientKeyboardController";
 import { contents } from "@/utils/contents";
 import { Meme } from "@/components/Meme";
+import { Sponsors } from "@/components/Sponsors";
 import { styled } from "@/utils/styling";
 
 const Container = styled("div", {
@@ -18,8 +19,6 @@ const Container = styled("div", {
 export default async function Slide({ searchParams }: any) {
   const p = await searchParams;
   const slide = p.slide;
-
-  console.log({ slide });
 
   return (
     <>
@@ -33,6 +32,8 @@ export default async function Slide({ searchParams }: any) {
         <Meme slide={slide} />
 
         <Coffee slide={slide} />
+
+        <Sponsors slide={slide} />
       </Container>
 
       <ClientKeyboardController max={contents.length - 1} />
