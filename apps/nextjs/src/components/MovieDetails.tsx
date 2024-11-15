@@ -3,19 +3,19 @@ import markdown from "markdown-it";
 import moment from "moment";
 import Icon from "feather-icons-react";
 
-import { fetchMovie } from "@workspace/shared/data/fetchMovie";
 import { LikeButton } from "@/components/LikeButton";
+
+import type { Movie } from "@workspace/shared/data/fetchMovie";
 
 const md = markdown();
 
 type Props = {
   loading?: boolean;
   searchTerm?: string;
-  movieId?: string;
+  movie?: Movie;
 };
 
-async function MovieDetails({ loading, searchTerm, movieId }: Props) {
-  const movie = await fetchMovie(movieId);
+function MovieDetails({ loading, searchTerm, movie }: Props) {
   if (loading) {
     return (
       <div className="sm:p-12 w-full max-w-[880px] h-full sm:h-[100svh] flex flex-col self-center">
@@ -53,7 +53,7 @@ async function MovieDetails({ loading, searchTerm, movieId }: Props) {
               >
                 <Icon icon="arrow-left" className="h-4" />
               </Link>
-              <LikeButton movieId={movie.imdbId} />
+              <LikeButton movieId={movie?.imdbId} />
             </div>
 
             <img

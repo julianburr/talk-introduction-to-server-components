@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import slugify from "slugify";
 
-import { MovieListItem } from "@workspace/shared/data/fetchList";
+import type { MovieListItem } from "@workspace/shared/data/fetchList";
 
 type Props = {
   loading?: boolean;

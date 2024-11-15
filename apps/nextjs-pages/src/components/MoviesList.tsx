@@ -1,7 +1,7 @@
 import slugify from "slugify";
 import Link from "next/link";
 
-import { MovieListItem } from "@workspace/shared/data/fetchList";
+import type { MovieListItem } from "@workspace/shared/data/fetchList";
 
 type Props = {
   loading?: boolean;

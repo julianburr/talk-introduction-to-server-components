@@ -3,9 +3,9 @@ import moment from "moment";
 import Icon from "feather-icons-react";
 import { Link } from "react-router-dom";
 
-import type { Movie } from "@workspace/shared/data/fetchMovie";
-
 import { LikeButton } from "./LikeButton";
+
+import type { Movie } from "@workspace/shared/data/fetchMovie";
 
 const md = markdown();
 

@@ -10,6 +10,7 @@ type Props = {
 
 async function MoviesList({ loading, searchTerm }: Props) {
   const items = await fetchList(searchTerm);
+
   if (loading) {
     return (
       <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-2">

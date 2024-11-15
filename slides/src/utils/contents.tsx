@@ -38,7 +38,7 @@ export const contents = [
   },
 
   // AJAX
-  { era: "ajax", content: <Title>Introducing JS & jQuery</Title> },
+  { era: "ajax", content: <Title>Introducing jQuery & AJAX</Title> },
   { era: "ajax", content: <Window title="Internet Explorer" /> },
   {
     era: "ajax",

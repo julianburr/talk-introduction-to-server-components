@@ -3,8 +3,9 @@ import markdown from "markdown-it";
 import moment from "moment";
 import Icon from "feather-icons-react";
 
-import type { Movie } from "@workspace/shared/data/fetchMovie";
 import { LikeButton } from "@/components/LikeButton";
+
+import type { Movie } from "@workspace/shared/data/fetchMovie";
 
 const md = markdown();
 
